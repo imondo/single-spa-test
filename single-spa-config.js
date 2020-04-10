@@ -1,40 +1,74 @@
-const ROOT_ROUTER = 'vue-template';
-
-function renderApp() {
-    $('section').html('<div id="app"></div>');
-    if (!$('#chunkVender')[0] && !$('#vueApp')[0]) {
-        $('body').append(
-            `<script id="chunkVender" src="https://one-pupil.github.io/vue-template/static/js/chunk-vendors.js"/>`
-        );
-        $('body').append(
-            `<script id="vueApp" src="https://one-pupil.github.io/vue-template/static/js/app.js"/>`
-        );
-        console.log('mount');
-    }
+function renderVueApp() {
+	$('section').html('<div id="app"></div>');
+	if (!$('#chunkVender')[0] && !$('#vueApp')[0]) {
+		$('body').append(
+			`<script id="chunkVender" src="https://one-pupil.github.io/vue-template/static/js/chunk-vendors.js"/>`
+		);
+		$('body').append(`<script id="vueApp" src="https://one-pupil.github.io/vue-template/static/js/app.js"/>`);
+		console.log('vue mount');
+	}
 }
 
-const lifecycle = {
-	bootstrap(props) { // 初始化
-		return Promise.resolve().then(() => {});
-	},
-	mount(props) { // 挂载
-		return Promise.resolve().then(() => {
-			window.location.hash = `/login`;
-			renderApp();
-		});
-	},
-	unmount(props) { // 卸载
-		return Promise.resolve().then(() => {
-			console.log('unmount');
-		});
+function renderReactApp() {
+	$('section').html('<div id="app"></div>');
+	if (!$('#reactApp')[0]) {
+		$('body').append(`<script id="1reactApp" src="../react-spa/react/1.react-spa.js"/>`);
+		$('body').append(`<script id="reactApp" src="../react-spa/react/react-spa.js"/>`);
+		console.log('react mount');
 	}
-};
+}
 
 /* 注册 app */
 singleSpa.registerApplication(
-	ROOT_ROUTER, // app 名称
-	lifecycle, // 当前 app 生命周期
-	(location) => location.href.includes(ROOT_ROUTER) // 当前 app 启用条件
+	'vue-spa', // app 名称
+	{
+		bootstrap(props) {
+			// 初始化
+			return Promise.resolve().then(() => {
+				console.log('vue bootstrap');
+			});
+		},
+		mount(props) {
+			// 挂载
+			return Promise.resolve().then(() => {
+				window.location.hash = `/login`;
+				renderVueApp();
+			});
+		},
+		unmount(props) {
+			// 卸载
+			return Promise.resolve().then(() => {
+				console.log('vue unmount');
+			});
+		}
+	}, // 当前 app 生命周期
+	(location) => location.href.includes('spa.html#/login') // 当前 app 启用条件
+);
+
+singleSpa.registerApplication(
+	'react-spa', // app 名称
+	{
+		bootstrap(props) {
+			// 初始化
+			return Promise.resolve().then(() => {
+				console.log('react bootstrap');
+			});
+		},
+		mount(props) {
+			// 挂载
+			return Promise.resolve().then(() => {
+				window.location.hash = `/react-spa`;
+				renderReactApp();
+			});
+		},
+		unmount(props) {
+			// 卸载
+			return Promise.resolve().then(() => {
+				console.log('react unmount');
+			});
+		}
+	}, // 当前 app 生命周期
+	(location) => location.href.includes('react-spa') // 当前 app 启用条件
 );
 
 /* 启动 */

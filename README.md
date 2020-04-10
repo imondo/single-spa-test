@@ -19,3 +19,17 @@ jquery或以前老项目逐步迁移迭代方案
 * 创建需要迁移单页应用的页面 `spa.html`
 
 * 单页应用的**路由 base**最好是设置成与老项目根目录**同名** `vue-template`
+
+## 启动
+
+```
+npm install
+
+# 或者
+
+yarn install
+
+
+npm run dev
+```
+
