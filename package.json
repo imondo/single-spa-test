@@ -1,0 +1,20 @@
+{
+  "name": "single-spa-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "single-spa-config.js",
+  "scripts": {
+    "dev": "gulp"
+  },
+  "keywords": [
+    "single-spa",
+    "test"
+  ],
+  "author": "mondo",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-connect": "^5.7.0",
+    "single-spa": "^5.3.1"
+  }
+}
