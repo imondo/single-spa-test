@@ -11,7 +11,7 @@ import store from "./store";
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router basename="/react-sap">
+    <Router basename="/react-spa">
       <Suspense fallback={<div>Loading....</div>}>
         <Route render={() => <App /> }/>
       </Suspense>

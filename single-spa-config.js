@@ -31,7 +31,6 @@ singleSpa.registerApplication(
 		mount(props) {
 			// 挂载
 			return Promise.resolve().then(() => {
-				window.location.hash = `/login`;
 				renderVueApp();
 			});
 		},
@@ -57,7 +56,6 @@ singleSpa.registerApplication(
 		mount(props) {
 			// 挂载
 			return Promise.resolve().then(() => {
-				window.location.hash = `/react-spa`;
 				renderReactApp();
 			});
 		},
@@ -68,7 +66,7 @@ singleSpa.registerApplication(
 			});
 		}
 	}, // 当前 app 生命周期
-	(location) => location.href.includes('react-spa') // 当前 app 启用条件
+	(location) => location.href.includes('spa.html#/react-spa') // 当前 app 启用条件
 );
 
 /* 启动 */

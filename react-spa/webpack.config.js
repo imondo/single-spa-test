@@ -9,7 +9,8 @@ module.exports = {
 	entry: './src/index.js',
 	output: {
 		path: path.join(__dirname, './react'),
-		filename: 'react-spa.js'
+		filename: 'react-spa.js',
+		publicPath: '/react-spa/react/'
 	},
 	module: {
 		rules: [
