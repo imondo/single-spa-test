@@ -33,3 +33,15 @@ yarn install
 npm run dev
 ```
 
+## 注意
+
+* 本地启动时子项目需要修改 webpack 配置为 localPath_dev
+
+```js
+output: {
+  path: path.join(__dirname, "./react"),
+  filename: "react-spa.js",
+  publicPath: localPath_dev
+}
+```
+
